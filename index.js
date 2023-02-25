@@ -1,4 +1,6 @@
-// this weapons object allows for extensiblity of the RPS game
+// this weapons object allows for a nice compare function,
+// could be used to extend the weapons later too
+
 const weapons = {
   rock: { weakTo: "paper", strongTo: "scissors" },
   paper: { weakTo: "scissors", strongTo: "rock" },
@@ -7,9 +9,10 @@ const weapons = {
 
 class RPS {
   constructor() {
-    // options is hardcoded atm but it 
-    // should probably be generated from the weapons as it validates each move
-    this.options = ["rock", "paper", "scissors"];
+    // options is generated from the weapons object KEYS
+    // as it validates each move for the player
+    this.options = Object.keys(weapons);
+    // ['rock', 'paper', 'scissors']
     this.playerChoice = null;
     this.computerChoice = null;
   }
@@ -20,7 +23,8 @@ class RPS {
   }
 
   _setComputerChoice() {
-    this.computerChoice = this.options[Math.floor(Math.random() * this.options.length)];
+    this.computerChoice =
+      this.options[Math.floor(Math.random() * this.options.length)];
   }
 
   _compare(move1, move2) {
@@ -39,6 +43,8 @@ class RPS {
   }
 
   start() {
+    // most of the bloat in this method is the readline logic
+    // how can we make this better? 
     const readline = require("readline").createInterface({
       input: process.stdin,
       output: process.stdout,
