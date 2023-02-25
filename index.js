@@ -14,20 +14,13 @@ class RPS {
     this.computerChoice = null;
   }
 
-  _roll() {
-    return this.options[Math.floor(Math.random() * this.options.length)];
-  }
-
-
-  // this function is somewhat repeated logic for both
   _setPlayerChoice(value) {
     if (this.options.indexOf(value) === -1) throw RangeError("no such choice");
     this.playerChoice = value;
   }
 
-  _setComputerChoice(value) {
-    if (this.options.indexOf(value) === -1) throw RangeError("no such choice");
-    this.computerChoice = value;
+  _setComputerChoice() {
+    this.computerChoice = this.options[Math.floor(Math.random() * this.options.length)];
   }
 
   _compare(move1, move2) {
@@ -56,8 +49,8 @@ class RPS {
       const c = String(choice).toLowerCase();
       if (typeof choice !== "string") throw new TypeError("incorrect input");
       this._setPlayerChoice(c);
-      this._setComputerChoice(this._roll());
-      this._compare(this.computerChoice, this.playerChoice);
+      this._setComputerChoice();
+      this._compare(this.playerChoice, this.computerChoice);
       readline.close();
     });
   }
@@ -66,3 +59,5 @@ class RPS {
 const game = new RPS();
 
 game.start();
+
+// anyone wanna try make this shorter lmao?
