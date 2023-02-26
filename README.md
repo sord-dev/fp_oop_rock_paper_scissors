@@ -10,7 +10,6 @@ npm run start
 
 ## Improvements to be made
 
-- Run for more than one game
-- Track score
-- Cleaner Code?
+- Track Score
+- Extend Weapons
 
